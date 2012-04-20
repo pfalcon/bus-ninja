@@ -16,6 +16,16 @@ enum
 
 static BOOL duplex;
 
+
+BOOL syntax_error()
+{
+    console_puts_P(PSTR("BadCmd"));
+    console_newline();
+    // Returning TRUE here is a convenience for other parsing functions,
+    // suggesting to ignore rest of line
+    return FALSE;
+}
+
 /*****************************************************************************/
 
 // "mycommand ... .... ..."
@@ -116,10 +126,7 @@ static BOOL handle_command(const uint8_t *start, const uint8_t *end, BOOL firstT
         }
     }
 
-    console_puts_P(PSTR("BadCmd"));
-    console_newline();
-
-    return FALSE;
+    return syntax_error();
 }
 
 void execute_command_line(const uint8_t *str, size_t len)
