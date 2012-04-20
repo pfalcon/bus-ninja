@@ -14,6 +14,7 @@ void bus_init(const bus_interface_t *bus)
         current_bus->close();
 
     current_bus = bus;
+    console_prompt = bus->prompt;
 
     if (NULL != bus && NULL != bus->open)
         bus->open();

@@ -68,6 +68,7 @@ static BOOL bus_spi_command(const uint8_t *start, size_t len, uint32_t repeat)
 
 const bus_interface_t bus_spi =
 {
+    .prompt     = "SPI",
     .open       = bus_spi_open,
     .close      = bus_spi_close,
     .start      = bus_spi_start,

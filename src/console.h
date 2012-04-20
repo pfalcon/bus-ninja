@@ -39,5 +39,7 @@ void console_putsmem(const uint8_t *a, const uint8_t *b);
 void console_rx_callback(uint8_t c);
 BOOL console_rx_ready_callback(void);
 
+extern char *console_prompt;
+
 #endif
 

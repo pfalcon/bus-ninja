@@ -23,6 +23,7 @@ static console_mode_t console_mode;
 // CONSOLE_MODE_LINE
 static uint8_t cmdbuf_len; // number of bytes in command buf
 static uint8_t cmdbuf[CMDBUF_SIZ];
+char *console_prompt;
 static BOOL got_line = FALSE;
 static BOOL echo = TRUE;
 static BOOL silent = FALSE;
@@ -35,6 +36,8 @@ static uint8_t last_key = 0x00;   // last character received
 
 static void prompt(void)
 {
+    if (console_prompt)
+        console_puts((uint8_t*)console_prompt);
     console_puts_P(PSTR("> "));
 }
 

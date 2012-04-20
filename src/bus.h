@@ -5,6 +5,7 @@
 
 typedef struct
 {
+    char *prompt;
     void (*open)(void);
     void (*close)(void);
     void (*start)(void);
