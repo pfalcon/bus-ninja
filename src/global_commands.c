@@ -4,7 +4,7 @@
 #include "console.h"
 #include "cpu.h"
 #include "led.h"
-
+#include "portpin.h"
 #include "bus.h"
 
 #ifdef CONFIG_BUS_SPI
@@ -67,6 +67,9 @@ DECLARE_COMMAND(jtag)
 #ifdef CONFIG_USBDEV_AVRISP
 DECLARE_COMMAND(avrisp)
 #endif
+#ifdef COMMAND_PIN
+DECLARE_COMMAND(pinmode)
+#endif
 
 /****************************************************************************************/
 // Create table of names and function pointers
@@ -107,14 +110,15 @@ const global_command_t global_command_table[] PROGMEM =
 #ifdef CONFIG_USBDEV_AVRISP
     ADD_COMMAND(avrisp)
 #endif
+#ifdef COMMAND_PIN
+    ADD_COMMAND(pinmode)
+#endif
     {NULL, NULL},
 };
 
 
 /****************************************************************************************/
 // Define command handlers
-
-#define TOK_NUM(p_tokend, p_num)    tok_num(&tok_start, p_tokend, line_end, p_num)
 
 #ifdef CONFIG_COMMAND_TEST
 // read all available tokens, converting to numbers as possible
@@ -304,4 +308,10 @@ DEFINE_COMMAND(avrisp)
 }
 #endif
 
+#ifdef COMMAND_PIN
+DEFINE_COMMAND(pinmode)
+{
+    return handle_pinmode_command(tok_start, line_end);
+}
+#endif
 

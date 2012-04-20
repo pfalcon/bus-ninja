@@ -27,6 +27,8 @@ extern const global_command_t global_command_table[] PROGMEM;
 #define ADD_COMMAND(X) \
     { X##Str, global_command_##X },
 
+#define TOK_NUM(p_tokend, p_num)    tok_num(&tok_start, p_tokend, line_end, p_num)
+
 /****************************************************************************************/
 
 #endif

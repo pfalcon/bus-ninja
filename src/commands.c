@@ -5,6 +5,7 @@
 #include "global_commands.h"
 #include "console.h"
 #include "bus.h"
+#include "portpin.h"
 
 /*****************************************************************************/
 
@@ -109,6 +110,10 @@ static BOOL handle_command(const uint8_t *start, const uint8_t *end, BOOL firstT
                     current_bus->read();
                 return FALSE;
             }
+        }
+        else if (start[0] == 'p' && start[1] != 'i')
+        {
+            return handle_pin_command(start, end-start);
         }
         else
         {   // handle other commands
