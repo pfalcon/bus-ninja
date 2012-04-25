@@ -104,16 +104,20 @@ void console_rx_callback(uint8_t c)
                 case 0x0D:
                 //case '\r':
                     got_line = TRUE;
-                    console_newline();
+                    if (echo)
+                        console_newline();
                     break;
                 case '\b':  // backspace
                 case 0x7F:  // del
                     if (cmdbuf_len > 0)
                     {
                         cmdbuf_len--;
-                        console_putc('\b');
-                        console_putc(' ');
-                        console_putc('\b');
+                        if (echo)
+                        {
+                            console_putc('\b');
+                            console_putc(' ');
+                            console_putc('\b');
+                        }
                     }
                     break;
                 default:
