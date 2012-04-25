@@ -6,6 +6,7 @@
 #include "watchdog.h"
 #include "console.h"
 #include "bus.h"
+#include "bus_hiz.h"
 
 #ifdef CONFIG_USBDEV
 #include "usbdev.h"
@@ -65,8 +66,8 @@ int main(void)
     usbdev_init(USBMODE_DEFAULT);
 #endif
 
-    /* no bus mode selected by default */
-    bus_init(NULL);
+    /* HiZ bus mode selected by default */
+    bus_init(&bus_hiz);
 
     /* Enable interrupts */
     cpu_enable_int();

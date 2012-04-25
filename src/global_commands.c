@@ -6,6 +6,7 @@
 #include "led.h"
 #include "portpin.h"
 #include "bus.h"
+#include "bus_hiz.h"
 
 #ifdef CONFIG_BUS_SPI
 #include "bus_spi.h"
@@ -55,6 +56,7 @@ DECLARE_COMMAND(silent)
 DECLARE_COMMAND(log)
 #endif
 DECLARE_COMMAND(reset)
+DECLARE_COMMAND(hiz)
 #ifdef CONFIG_BUS_SPI
 DECLARE_COMMAND(spi)
 #endif
@@ -101,6 +103,7 @@ const global_command_t global_command_table[] PROGMEM =
     ADD_COMMAND(silent)
 #endif
     ADD_COMMAND(reset)
+    ADD_COMMAND(hiz)
 #ifdef CONFIG_BUS_SPI
     ADD_COMMAND(spi)
 #endif
@@ -273,6 +276,12 @@ DEFINE_COMMAND(help)
 DEFINE_COMMAND(reset)
 {
     cpu_reset();
+    return TRUE;
+}
+
+DEFINE_COMMAND(hiz)
+{
+    bus_init(&bus_hiz);
     return TRUE;
 }
 

@@ -38,6 +38,7 @@ SRCS +=  $(TARGET).c \
         bus.c \
         menu.c \
         portpin.c \
+        bus_hiz.c
 
 LDFLAGS = -Wl,-Map=$(TARGET).map,--cref
 LDFLAGS += -Wl,--relax
